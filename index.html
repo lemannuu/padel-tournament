@@ -36,7 +36,13 @@
             color: var(--text-primary);
         }
 
-        .container { max-width: 1800px; margin: 0 auto; padding: 20px; }
+        body {
+            overflow-x: hidden;
+            word-wrap: break-word;
+            -webkit-touch-callout: none;
+        }
+
+        .container { max-width: 100%; margin: 0; padding: 20px; box-sizing: border-box; }
 
         /* HEADER CON TEMA SELECTOR */
         header {
@@ -502,12 +508,44 @@
         }
 
         @media (max-width: 768px) {
-            .container { padding: 12px; }
+            body { overflow-x: hidden; }
+            .container { padding: 12px; max-width: 100%; }
             h1 { font-size: 2em; }
-            .section { padding: 18px; }
-            .action-buttons { flex-direction: column; }
-            button { width: 100%; }
-            .courts-row { grid-template-columns: 1fr; }
+            h2 { font-size: 1.6em; }
+            h3 { font-size: 1.2em; }
+            .section { padding: 16px; }
+            .section-title { font-size: 1.3em; }
+            .action-buttons { flex-direction: column; gap: 8px; }
+            button { width: 100%; padding: 12px; font-size: 1em; }
+            .court-card { margin-bottom: 10px; border-radius: 10px; }
+            .count-btn { padding: 10px 12px; font-size: 0.95em; }
+            .input-field { font-size: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            body { overflow-x: hidden; }
+            .container { padding: 8px; margin: 0; }
+            header { padding: 12px 8px; }
+            h1 { font-size: 1.6em; margin: 8px 0; }
+            p.subtitle { font-size: 0.9em; }
+            .section { padding: 12px; margin: 8px 0; }
+            .section-title { font-size: 1.1em; margin-bottom: 10px; }
+            .status-card { padding: 12px; }
+            .status-label { font-size: 0.7em; }
+            .status-value { font-size: 1.1em; }
+            .count-btn { padding: 8px 10px; font-size: 0.9em; min-width: auto; }
+            .court-card { margin-bottom: 8px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+            .court-header { font-size: 0.95em; padding: 8px; }
+            .names-active { font-size: 1.2em; }
+            .names-inactive { font-size: 0.9em; }
+            .btn-auto { padding: 10px !important; font-size: 0.9em; }
+            .action-buttons { gap: 6px; padding: 0 8px; }
+            button { padding: 10px 12px; font-size: 0.95em; border-radius: 8px; }
+            .input-field { font-size: 16px; padding: 10px 8px; }
+            input[type="range"] { height: 6px; }
+            #playerCountDisplay { font-size: 1.1em; }
+            .modal-content { padding: 20px; max-width: 90vw; }
+            .modal-close { width: 32px; height: 32px; }
         }
 
         @keyframes fadeInUp {
@@ -638,18 +676,18 @@
 
             <!-- RELOJ DINÁMICO -->
             <div style="background: linear-gradient(135deg, rgba(44, 90, 160, 0.1) 0%, rgba(44, 90, 160, 0.05) 100%); border: 2px solid #2c5aa0; border-radius: 12px; padding: 20px; margin: 20px 0;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; text-align: center;">
-                    <div>
-                        <div style="font-size: 0.85em; font-weight: 600; color: #666; text-transform: uppercase; margin-bottom: 8px;">🕐 Hora Actual</div>
-                        <div style="font-size: 1.8em; font-weight: 900; color: #2c5aa0;" id="horaActual">15:30</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; text-align: center; align-items: center;">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div style="font-size: 0.75em; font-weight: 700; color: #666; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">🕐 Hora Actual</div>
+                        <div style="font-size: 1.9em; font-weight: 900; color: #2c5aa0; line-height: 1;" id="horaActual">15:30</div>
                     </div>
-                    <div>
-                        <div style="font-size: 0.85em; font-weight: 600; color: #666; text-transform: uppercase; margin-bottom: 8px;">⏱️ Minutos</div>
-                        <div style="font-size: 1.8em; font-weight: 900; color: #2c5aa0;" id="minutosTotal">60</div>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div style="font-size: 0.75em; font-weight: 700; color: #666; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">⏱️ Minutos</div>
+                        <div style="font-size: 1.9em; font-weight: 900; color: #2c5aa0; line-height: 1;" id="minutosTotal">60</div>
                     </div>
-                    <div>
-                        <div style="font-size: 0.85em; font-weight: 600; color: #666; text-transform: uppercase; margin-bottom: 8px;">✅ Termina a</div>
-                        <div style="font-size: 1.8em; font-weight: 900; color: #2c5aa0;" id="horaFin">16:30</div>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div style="font-size: 0.75em; font-weight: 700; color: #666; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">✅ Termina a</div>
+                        <div style="font-size: 1.9em; font-weight: 900; color: #2c5aa0; line-height: 1;" id="horaFin">16:30</div>
                     </div>
                 </div>
                 <div style="border-top: 2px solid #2c5aa0; margin-top: 15px; padding-top: 15px; text-align: center;">
@@ -1165,17 +1203,37 @@
             const canPlay = isCourtPlayable(court, occupied);
 
             if (isPlaying) {
-                // LAYOUT MEJORADO: Nombres grandes, espacios compactos
+                // LAYOUT RESPONSIVE: 2 equipos arriba, 2 abajo (mejor para móvil)
                 return `<div class="court-card ${isComplete ? 'complete' : ''} border-active">
                     <div class="court-header header-active">🏆 CANCHA ${courtNumber} 🎾 EN JUEGO</div>
-                    <div style="display: grid; grid-template-columns: 1.2fr 0.8fr 1.2fr 0.8fr; gap: 8px; padding: 12px; align-items: center;">
-                        <div class="center-col"><div class="names-active" style="font-size: 1.5em;">${court.team1[0]}<br>${court.team1[1]}</div></div>
-                        <div class="center-col"><div style="display: flex; flex-direction: column; gap: 6px; align-items: center;"><div class="label-tiny">SETS</div><div style="display: flex; gap: 3px;"><button class="score-btn" onclick="changeScore(${roundIdx}, ${courtIdx}, 'team1vs3', -1)" style="padding: 5px 7px; font-size: 0.85em;">−</button><div class="score-display-large" style="font-size: 1.8em; min-width: 35px;">${court.team1vs3}</div><button class="score-btn" onclick="changeScore(${roundIdx}, ${courtIdx}, 'team1vs3', 1)" style="padding: 5px 7px; font-size: 0.85em;">+</button></div></div></div>
-                        <div class="center-col"><div class="names-active" style="font-size: 1.5em;">${court.team3[0]}<br>${court.team3[1]}</div></div>
-                        <div class="center-col"><div style="display: flex; flex-direction: column; gap: 6px; align-items: center;"><div class="label-tiny">SETS</div><div style="display: flex; gap: 3px;"><button class="score-btn" onclick="changeScore(${roundIdx}, ${courtIdx}, 'team2vs4', -1)" style="padding: 5px 7px; font-size: 0.85em;">−</button><div class="score-display-large" style="font-size: 1.8em; min-width: 35px;">${court.team2vs4}</div><button class="score-btn" onclick="changeScore(${roundIdx}, ${courtIdx}, 'team2vs4', 1)" style="padding: 5px 7px; font-size: 0.85em;">+</button></div></div></div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 8px; box-sizing: border-box;">
+                        <!-- EQUIPO 1 -->
+                        <div style="text-align: center;">
+                            <div class="names-active" style="font-size: 1.1em; margin-bottom: 6px; word-break: break-word;">${court.team1[0]}<br>${court.team1[1]}</div>
+                            <div style="display: flex; flex-direction: column; gap: 4px; align-items: center;">
+                                <div class="label-tiny">SETS</div>
+                                <div style="display: flex; gap: 3px; align-items: center;">
+                                    <button class="score-btn" onclick="changeScore(${roundIdx}, ${courtIdx}, 'team1vs3', -1)" style="padding: 5px 7px; font-size: 0.85em;">−</button>
+                                    <div class="score-display-large" style="font-size: 1.4em; min-width: 35px; text-align: center;">${court.team1vs3}</div>
+                                    <button class="score-btn" onclick="changeScore(${roundIdx}, ${courtIdx}, 'team1vs3', 1)" style="padding: 5px 7px; font-size: 0.85em;">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- EQUIPO 2 -->
+                        <div style="text-align: center;">
+                            <div class="names-active" style="font-size: 1.1em; margin-bottom: 6px; word-break: break-word;">${court.team3[0]}<br>${court.team3[1]}</div>
+                            <div style="display: flex; flex-direction: column; gap: 4px; align-items: center;">
+                                <div class="label-tiny">SETS</div>
+                                <div style="display: flex; gap: 3px; align-items: center;">
+                                    <button class="score-btn" onclick="changeScore(${roundIdx}, ${courtIdx}, 'team2vs4', -1)" style="padding: 5px 7px; font-size: 0.85em;">−</button>
+                                    <div class="score-display-large" style="font-size: 1.4em; min-width: 35px; text-align: center;">${court.team2vs4}</div>
+                                    <button class="score-btn" onclick="changeScore(${roundIdx}, ${courtIdx}, 'team2vs4', 1)" style="padding: 5px 7px; font-size: 0.85em;">+</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div style="text-align: center; padding: 6px; background: #f9f9f9; border-top: 1px solid #eee; font-weight: 600; color: #2c5aa0; margin-bottom: 10px; font-size: 1.1em;">Total: ${total}/5 ${isComplete ? '✓' : ''}</div>
-                    <div class="action-buttons" style="gap: 8px; padding: 0 12px;"><button class="btn-auto btn-blue" onclick="autoCompletarSets(${roundIdx}, ${courtIdx})" style="padding: 10px;">⚡ AUTO</button><button class="btn-auto btn-red" onclick="closeCourt(${roundIdx}, ${courtIdx})" style="padding: 10px;">🏁 FIN DE JUEGO</button></div>
+                    <div style="text-align: center; padding: 8px; background: #f9f9f9; border-top: 1px solid #eee; font-weight: 600; color: #2c5aa0; margin-bottom: 10px; font-size: 1.1em;">Total: ${total}/5 ${isComplete ? '✓' : ''}</div>
+                    <div class="action-buttons" style="gap: 8px; padding: 0 12px; flex-direction: column;"><button class="btn-auto btn-blue" onclick="autoCompletarSets(${roundIdx}, ${courtIdx})" style="padding: 10px; width: 100%;">⚡ AUTO</button><button class="btn-auto btn-red" onclick="closeCourt(${roundIdx}, ${courtIdx})" style="padding: 10px; width: 100%;">🏁 FIN DE JUEGO</button></div>
                 </div>`;
             } else {
                 return `<div class="court-card"><div class="court-header">🏆 CANCHA ${courtNumber}</div>
